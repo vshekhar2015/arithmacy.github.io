@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aarav's Harry Potter Arthimacy Steam Project</title>
+	<style type="text/css">
+		#mainImg {
+		    max-width: 100vw;
+		    max-height: 100vh;
+		}
+		#entry {
+		  position: absolute;
+		  left: 20%;
+		  top: 50%; /* Adjust this value to move the positioned div up and down */
+	      width: 25%; /* Set the width of the positioned div */
+		  transform: translate(-50%, -50%);
+			z-index: 999;
+			margin: 0 auto;
+			right: 0;        
+			text-align: center;
+			
+		}
+		#allies {
+		position: absolute;
+		  top: 30%;
+		  left: 82%;
+		  text-align: center;
+		}
+	</style>
+	<script type="text/javascript">
+		
+
+		function changePicture(imgTag){
+			console.log(imgTag)
+			var imgSrc = imgTag.src
+			if(imgSrc == img1)
+				document.getElementById("mainImg").src=img2;
+			else if(imgSrc== img2){
+				document.getElementById("mainImg").src=img3;
+				document.getElementById("enterYourName").hidden=false;
+				document.getElementById("allies").hidden=false;
+			}
+		}
+		function caluculateCode(input){
+			input = input.toLowerCase()
+			if(input == 'a' || input == 'j' || input == 's')
+				return '1';
+			if(input == 'b' || input == 'k' || input == 't')
+				return '2';
+			if(input == 'c' || input == 'l' || input == 'u')
+				return '3';
+			if(input == 'd' || input == 'm' || input == 'v')
+				return '4';
+			if(input == 'e' || input == 'n' || input == 'w')
+				return '5';
+			if(input == 'f' || input == 'o' || input == 'x')
+				return '6';
+			if(input == 'g' || input == 'p' || input == 'y')
+				return '7';
+			if(input == 'h' || input == 'q' || input == 'z')
+				return '8';
+			if(input == 'i' || input == 'r')
+				return '9';
+		}
+
+		function decodeName(textInput){
+			document.getElementById("codeOutput").innerHTML='Arithmancy code: <br/>'+decodeString(textInput.value)
+			match(textInput.value)
+		}
+
+		function decodeString(str){
+			var result = ''
+			for(var j = 0; j<str.length ; j++){
+				result = result + caluculateCode(str[j]) 
+			}
+			return result;
+		}
+
+		function decodeme(){
+			
+			for(var i = 0; i<names.length ; i++){
+				var result = ''
+				for(var j = 0; j<names[i].length ; j++){
+					result = result + caluculateCode(names[i][j]) 
+				}
+				console.log(result)
+			}
+		}
+
+		function match(startName){
+			//gives best 5 matches, for 2 digit numbers
+			var listOfMatches = []
+			if(startName.length >=2 ){
+				for(var i = 0; i<startName.length-1 ; i++){
+					var thingToMatch = decodeString(startName[i]+startName[i+1])
+					for(var j=0; j<decodedValues.length; j++){
+						var thisDecodedValue = decodedValues[j].toString();
+						if(thisDecodedValue.match(thingToMatch.toString()) != null){
+							if (listOfMatches.indexOf(names[j]) === -1 && listOfMatches.length <= 5) 
+								listOfMatches.push(names[j]);
+						}
+					}
+				}
+			}
+			document.getElementById('allies').innerHTML = 'Your allies: <br/>'
+			for(var i=0; i<listOfMatches.length; i++){
+				if(startName.toLowerCase() != listOfMatches[i].toLowerCase())
+					document.getElementById('allies').innerHTML += listOfMatches[i] + '<br/>'
+			}
+			console.log(listOfMatches)
+		}
+
+	var names = [
+		'Aarav',
+		'YangYang',
+		'Brendan',
+		'Liam',
+		'Evelina',
+		'Abigail',
+		'Noah',
+		'Lily',
+		'Madison',
+		'Alyssa',
+		'Sofia',
+		'Ayaan',
+		'Dylan',
+		'Aaron',
+		'Vincent',
+		'Reid',
+		'Gabriel',
+		'Lawrence',
+		'Wilkinson',
+		'Amanda',
+		'Vettese',
+		'Dana', 
+		'Lusby',
+		'Ann',
+		'Marie',
+		'Hennesy',
+		'Kyle' ,
+		'Small',
+		'Stephanie' ,
+		'Yannantuono',
+		'Martinez',
+		'Simpson',
+		'Ligouri',
+		'Roche',
+		'Difonzo',
+		'Pallante',
+		'Avazis',
+		'Albanese',
+		'Feight',
+		'Morgan',
+		'Connolly',
+		'Bengio',
+		'Ras',
+		'Federico',
+		'Sullivan',
+		'Zorn',
+		'Crown'
+		]
+
+var decodedValues = [
+        11914,
+		71577157,
+		2955415,
+		3914,
+		5453951,
+		1297193,
+		5618,
+		3937,
+		4149165,
+		137111,
+		16691,
+		17115,
+		47315,
+		11965,
+		4953552,
+		9594,
+		7129953,
+		31595535,
+		593295165,
+		141541,
+		4522515,
+		4151,
+		33127,
+		155,
+		41995,
+		8555517,
+		2735,
+		14133,
+		125781595,
+		71551523656,
+		41929558,
+		1947165,
+		3976399,
+		96385,
+		4966586,
+		71331525,
+		141891,
+		13215515,
+		659782,
+		469715,
+		36556337,
+		255796,
+		911,
+		65459936,
+		13339415,
+		8695,
+		39655
+	]
+
+	var img1 = 'https://raw.githubusercontent.com/vshekhar2015/arithmacy/main/1.jpg'
+	var img2 = 'https://raw.githubusercontent.com/vshekhar2015/arithmacy/main/2.jpg'
+	var img3 = 'https://raw.githubusercontent.com/vshekhar2015/arithmacy/main/3.jpg'
+		
+	</script>
+</head>
+
+<body>
+	<img id="mainImg" onclick="changePicture(this)" src="https://raw.githubusercontent.com/vshekhar2015/arithmacy/main/1.jpg" />
+	<div id="entry">
+		<input type="text" oninput="decodeName(this)" hidden=true name="" id="enterYourName">
+		<h2 id="codeOutput">&nbsp;</h2>
+	</div>
+    <h2 id="allies">
+    	
+    </h2>
+</body>
+</html>
